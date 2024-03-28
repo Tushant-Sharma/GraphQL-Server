@@ -1,21 +1,8 @@
-import express from 'express'
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { Init } from 'v8';
-import { prisma } from './lib/db';
+import { ApolloServer } from "@apollo/server";
 
+async function createApollorServer() {
 
-
-
-
-// start graphql Server.
-
-async function main() {
-
-    const app = express()
-    app.use(express.json())
-
-    const graphQLServer = new ApolloServer({
+    const gqlServer = new ApolloServer({
         typeDefs: `
         type Query {
             hello:String
@@ -45,18 +32,6 @@ async function main() {
         } // Actually funciton will run .
     })
 
-    await graphQLServer.start();
-    const PORT = Number(process.env.PORT) || 8080;
-
-    app.get("/", (req, res) => {
-        res.json({ msg: "running." })
-    })
-
-    app.use("/graphql", expressMiddleware(graphQLServer))
-
-    app.listen(PORT, () => {
-        console.log(`Server is started on http://localhost:${PORT}/graphql`)
-    })
+    await gqlServer.start();
+    return gqlServer;
 }
-
-main();

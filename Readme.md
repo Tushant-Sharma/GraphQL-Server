@@ -17,21 +17,17 @@ This guide will help you set up a new project with TypeScript, Express, and Apol
 `git init`
 
 
-3. **Ignore Node.js dependencies:**
-
-`npx gitignore Node `
+3. **Ignore Node.js dependencies:** `npx gitignore Node `
 
 If you need to undo `git init` or remove the `.git` folder, use:
 
 
 
 
-4. **Initialize a new Yarn project:**
-`yarn init`
+4. **Initialize a new Yarn project:** `yarn init`
 
 
-5. **Add TypeScript and Express:**
-`yarn add typescript express @types/express -D`
+5. **Add TypeScript and Express:** ``yarn add typescript express @types/express -D``
 
 
    Make the following changes in `tsconfig.json`:
