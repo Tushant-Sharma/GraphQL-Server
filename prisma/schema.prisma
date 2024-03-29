@@ -16,15 +16,13 @@ datasource db {
 model User {
   id         String   @id @default(uuid())
   firstName  String   @map("first_name")
-  lastName   String   @map("last_name")
-  email      String?  @unique
+  lastName   String?  @map("last_name")
+  email      String  @unique
   profileImg String?  @map("profile_img")
-  age        Int
+  headers    String?
   hashPass   String   @map("hash_pass")
   salt       String
   date       DateTime @default(now()) @map("join_date")
-  
+
   @@map("users")
 }
-
-

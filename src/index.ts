@@ -4,6 +4,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { Init } from 'v8';
 import { prisma } from './lib/db';
 import createApollorServer from './graphql';
+import UserService from './service/user.jwt';
 
 
 
@@ -54,7 +55,11 @@ async function main() {
     })
 
     const graphQLServer = await createApollorServer();
-    app.use("/graphql", expressMiddleware(graphQLServer))
+    app.use("/graphql", expressMiddleware(graphQLServer, {
+        context: async ({ req }) => ({
+            token:  req.headers.authorization
+        })
+    }));
 
     app.listen(PORT, () => {
         console.log(`Server is started on http://localhost:${PORT}/graphql`)
