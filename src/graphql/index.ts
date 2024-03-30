@@ -7,9 +7,11 @@ async function createApollorServer() {
         token?: string
     }>({
         typeDefs: `
+        ${User.typeDefs}
 type Query {
   ${User.query}
 }
+
 type Mutation{
 
     ${User.mutation}
