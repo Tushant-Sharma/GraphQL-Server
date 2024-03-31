@@ -10,4 +10,10 @@ age        :Int!
 hashPass   :String!
 salt       :String!
 }
+
+input SigninInputs {
+    email:String!
+    password:String!
+}
+
 `
