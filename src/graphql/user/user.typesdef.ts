@@ -8,7 +8,7 @@ email      :String
 profileImg :String
 age        :Int!
 hashPass   :String!
-salt       :String!
+salt       :String!git 
 }
 
 input SigninInputs {
