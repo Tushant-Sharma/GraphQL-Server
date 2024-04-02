@@ -1,6 +1,8 @@
 export const query = `
 #graphql
-hello:String
-signin(input:SigninInputs):String
+ type Query {
+    hello:String
+    signin(input:SigninInputs):String
+}
 
 `

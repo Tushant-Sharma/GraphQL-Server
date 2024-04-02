@@ -1,36 +1,30 @@
 import { ApolloServer } from "@apollo/server";
-import { User } from "./user/user.index";
+import _mergeTypeDefs from "./merge.typedf";
+import _mergeResolvers from "./merge.resolvers";
+// import { User } from "./user/user.index";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+
 
 async function createApollorServer() {
 
-    const gqlServer = new ApolloServer<{
-        token?: string
-    }>({
-        typeDefs: `
-        ${User.typeDefs}
-type Query {
-  ${User.query}
-}
+    try {
 
-type Mutation{
+        const gqlServer = new ApolloServer<{
+            token?: string | undefined
+        }>({
+            typeDefs: '',
 
-    ${User.mutation}
-}
-       
-        `,
+            resolvers: {}
+        })
 
-        resolvers: {
-            Query: {
-                ...User.resolver.Query,
-            },
-            Mutation: {
-                ...User.resolver.Mutation
-            }
-        }
-    })
 
-    await gqlServer.start();
-    return gqlServer;
+        await gqlServer.start();
+        return gqlServer;
+
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 export default createApollorServer
